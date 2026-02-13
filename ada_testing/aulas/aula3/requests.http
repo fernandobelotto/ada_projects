@@ -1,0 +1,20 @@
+http://localhost:3000/
+
+
+###
+
+
+http://localhost:3000/1234
+
+
+###
+
+
+POST http://localhost:3000/
+content-type: application/json
+
+{
+    "name": "fernando",
+    "age": 39,
+    "id": "123"
+}
