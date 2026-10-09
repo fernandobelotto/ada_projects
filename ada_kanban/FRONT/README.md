@@ -32,7 +32,7 @@ If you want to check a online version of this project running, access:
 this will install all the dependencies for this react project
 
 ```sh
-npm install
+pnpm install
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ npm install
 After the dependecies been installed, you can run
 
 ```sh
-npm run start
+pnpm run start
 ```
 
 witch runs the app in the development mode.<br /> Open

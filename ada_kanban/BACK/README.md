@@ -38,13 +38,13 @@ if you like using postman you can checkout a public collection that i made for t
 ## Install
 this will install all the dependencies for this react project
 ```sh
-npm install
+pnpm install
 ```
 
 ## Usage
 After the dependecies been installed, you can run
 ```sh
-npm run start:dev
+pnpm run start:dev
 ```
 witch runs the app in the development mode.<br /> Open
 [http://localhost:5000/api](http://localhost:5000/api) to view it in the browser.

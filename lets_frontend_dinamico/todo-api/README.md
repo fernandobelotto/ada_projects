@@ -13,13 +13,13 @@ cd ./todo-pi
 - Execute o comando para instalar as dependências
 
 ```base 
-npm install
+pnpm install
 ```
 
 - Por fim, inicie o servidor
 
 ```base 
-npm start
+pnpm start
 ```
 - Acesse a API em http://localhost:3000/todos
 - Você verá uma lista de tarefas em formato JSON 🥳🎉

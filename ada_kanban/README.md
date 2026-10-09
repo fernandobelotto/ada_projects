@@ -51,7 +51,7 @@ docker-compose up
 
 this will spin up the frontend at localhost:30000 and the backend at localhost:5000
 
-you can run each project separately using docker or npm
+you can run each project separately using docker or pnpm
 
 ### Fernando Belotto
 

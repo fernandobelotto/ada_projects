@@ -2,15 +2,17 @@ FROM node:12.19.0-alpine3.9 AS development
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+RUN npm install -g pnpm@10.34.5
 
-RUN npm install glob rimraf
+COPY package.json pnpm-lock.yaml ./
 
-RUN npm install --only=development
+RUN pnpm add glob rimraf
+
+RUN pnpm install --frozen-lockfile --dev
 
 COPY . .
 
-RUN npm run build
+RUN pnpm run build
 
 FROM node:12.19.0-alpine3.9 as production
 
@@ -19,9 +21,11 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+RUN npm install -g pnpm@10.34.5
 
-RUN npm install --only=production
+COPY package.json pnpm-lock.yaml ./
+
+RUN pnpm install --frozen-lockfile --prod
 
 COPY . .
 
