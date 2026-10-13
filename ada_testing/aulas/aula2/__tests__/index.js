@@ -1,13 +1,14 @@
-test('espero que os objetos sejam diferentes', () => {
+const { expect, test } = require("@jest/globals");
 
-    const dog = {
-        name: 'billy',
-        age: 10
-    }
+test("espero que os objetos sejam diferentes", () => {
+  const dog = {
+    age: 10,
+    name: "billy",
+  };
 
-    const dog2 = {
-        name: 'laica',
-        age: 8
-    }
-    expect(dog.name).not.toEqual('laica')
-})
+  const dog2 = {
+    age: 8,
+    name: "laica",
+  };
+  expect(dog.name).not.toBe("laica");
+});

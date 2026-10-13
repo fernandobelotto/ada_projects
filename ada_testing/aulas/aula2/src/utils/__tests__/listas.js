@@ -1,11 +1,7 @@
-const listaDeCompras = [
-    'carne',
-    'alface',
-    'chocolate',
-    'cocada',
-    'leite',
-  ];
+const { expect, test } = require("@jest/globals");
 
-test('a lista de compras contém o item leite', () => {
-    expect(listaDeCompras).toContain('leite');
+const listaDeCompras = ["carne", "alface", "chocolate", "cocada", "leite"];
+
+test("a lista de compras contém o item leite", () => {
+  expect(listaDeCompras).toContain("leite");
 });

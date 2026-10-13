@@ -1,5 +1,7 @@
-import { houseForSale, desiredHouse} from '../casas.js'
+import { expect, test } from "@jest/globals";
 
-test('the house has my desired features', () => {
-    expect(houseForSale).toMatchObject(desiredHouse);
+import { houseForSale, desiredHouse } from "../casas.js";
+
+test("the house has my desired features", () => {
+  expect(houseForSale).toMatchObject(desiredHouse);
 });

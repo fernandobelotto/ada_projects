@@ -9,9 +9,9 @@ app.use(cors());
 
 const posts = {
   asdf: {
+    comments: [],
     id: "asdf",
     title: "Meu Primeiro Post",
-    comments: [],
   },
 };
 
@@ -20,7 +20,7 @@ app.get("/posts", (_req, res) => {
 });
 
 app.post("/posts", async (req, res) => {
-  const postId = (Math.random() * 10000).toFixed().toString();
+  const postId = (Math.random() * 10_000).toFixed(0).toString();
   req.body.id = postId;
   req.body.comments = [];
 
@@ -28,17 +28,14 @@ app.post("/posts", async (req, res) => {
 
   await axios
     .post("http://localhost:4005/events", {
-      type: "PostCreated",
       data: req.body,
+      type: "PostCreated",
     })
     .then(() => console.log("evento PostCreated enviado"))
     .catch(() => console.log("erro ao enviar evento PostCreated"));
 
   res.json(req.body);
 });
-
-
-
 
 app.get("/", (_req, res) => {
   res.json({ status: "tudo ok!" });

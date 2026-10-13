@@ -1,6 +1,6 @@
-import express from "express";
-import cors from "cors";
 import axios from "axios";
+import cors from "cors";
+import express from "express";
 
 const app = express();
 
@@ -17,20 +17,20 @@ function handleEvents(event) {
   }
 
   if (event.type === "CommentCreated") {
-    const postId = event.data.postId;
+    const { postId } = event.data;
     const comment = event.data;
     posts[postId].comments.push(comment);
   }
 
-  if(event.type=== "CommentUpdated") {
-    const postId = event.data.postId;
+  if (event.type === "CommentUpdated") {
+    const { postId } = event.data;
     const newComment = event.data;
-    posts[postId].comments = posts[postId].comments.map(comment => {
-      if(comment.id === newComment.id){
-        return newComment
-      } 
-      return comment
-    })
+    posts[postId].comments = posts[postId].comments.map((comment) => {
+      if (comment.id === newComment.id) {
+        return newComment;
+      }
+      return comment;
+    });
   }
 }
 
@@ -57,13 +57,13 @@ app.listen(4002, () => {
   axios
     .get("http://localhost:4005/events")
     .then((events) => {
-      for (let event of events.data) {
+      for (const event of events.data) {
         console.log(`Processing event of type ${event.type}`);
         handleEvents(event);
       }
     })
     .catch(() => {
-      console.log('error getting events from event-bus!')
+      console.log("error getting events from event-bus!");
     })
     .finally(() =>
       console.log("query server running on http://localhost:4002")

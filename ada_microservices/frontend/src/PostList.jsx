@@ -1,40 +1,32 @@
-import CommentCreate from "./CommentCreate"
-import CommentList from "./CommentList"
-import axios from 'axios'
-import { useEffect, useState } from "react"
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+import CommentCreate from "./CommentCreate";
+import CommentList from "./CommentList";
 
 export default function PostList() {
+  const [posts, setPosts] = useState({});
 
-    const [posts, setPosts] = useState({})
+  const fetchPosts = async () => {
+    const res = await axios.get("http://localhost:5000/posts");
 
-    const fetchPosts = async () => {
-        const res = await axios.get('http://localhost:5000/posts')
+    setPosts(res.data);
+  };
 
-        setPosts(res.data)
-    }
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
-    useEffect(() => {
-      fetchPosts()
-    }, [])
-    
-    const renderizandoPosts = Object?.values(posts)?.map(post => {
+  const renderizandoPosts = Object?.values(posts)?.map((post) => (
+    <>
+      <div>
+        <h3>{post.title}</h3>
+        <p>{post.id}</p>
+        <CommentCreate postId={post.id} />
+        <CommentList comments={post.comments} />
+      </div>
+    </>
+  ));
 
-        return (
-            <>
-                <div>
-                    <h3>{post.title}</h3>
-                    <p>{post.id}</p>
-                    <CommentCreate postId={post.id}/>
-                    <CommentList comments={post.comments} />
-                </div>
-            </>
-        )
-    })
-
-
-    return (
-        <>
-            {renderizandoPosts}
-        </>
-    )
+  return <>{renderizandoPosts}</>;
 }

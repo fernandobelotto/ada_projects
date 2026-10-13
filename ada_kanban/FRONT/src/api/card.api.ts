@@ -1,5 +1,5 @@
 import getInstance from ".";
-import { CardModel } from "../models/card.model";
+import type { CardModel } from "../models/card.model";
 
 export class CardApi {
   static async create(body: CardModel) {

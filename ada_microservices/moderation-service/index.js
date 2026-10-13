@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -8,7 +9,7 @@ app.use(cors());
 app.post("/events", (req, res) => {
   const eventType = req.body.type;
   const eventData = req.body.data;
-  console.log(req.body.data)
+  console.log(req.body.data);
   if (eventType === "CommentCreated") {
     // fazer moderação
     setTimeout(async () => {
@@ -20,8 +21,8 @@ app.post("/events", (req, res) => {
 
       await axios
         .post("http://localhost:4005/events", {
-          type: "CommentModerated",
           data: eventData,
+          type: "CommentModerated",
         })
         .then(() => {
           console.log("evento CommenteModerated enviado ao bus");

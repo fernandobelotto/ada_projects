@@ -1,5 +1,7 @@
 import { createStandaloneToast } from "@chakra-ui/react";
-import Axios, { AxiosError, AxiosInstance } from "axios";
+import type { AxiosError, AxiosInstance } from "axios";
+import Axios from "axios";
+
 import { store } from "../store";
 
 export default function getInstance(): AxiosInstance {
@@ -10,22 +12,22 @@ export default function getInstance(): AxiosInstance {
 
   const axiosInstance = Axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,
-    timeout: 30000,
     headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
       Accept: "*/*",
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
     },
+    timeout: 30_000,
   });
 
   axiosInstance.interceptors.response.use(
     (response) => response,
     (error: AxiosError) => {
       toast({
-        title: "Request Error",
         description: `Message: ${error.message}`,
-        status: "error",
         duration: 3000,
+        status: "error",
+        title: "Request Error",
       });
       return Promise.reject(error);
     }
@@ -39,10 +41,10 @@ export function handleSessionError(err: AxiosError | unknown): boolean {
 
   if ((err as AxiosError)?.response?.status === 401) {
     toast({
-      title: "Session Expired",
       description: "Your session is expired, please sign in again",
-      status: "error",
       duration: 3000,
+      status: "error",
+      title: "Session Expired",
     });
 
     return true;

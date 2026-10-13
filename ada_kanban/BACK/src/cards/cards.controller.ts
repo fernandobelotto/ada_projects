@@ -16,9 +16,10 @@ import {
   ApiTags,
 } from "@nestjs/swagger";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
-import { CardsService } from "./cards.service";
-import { CreateCardDto } from "./dto/create-card.dto";
-import { UpdateCardDto } from "./dto/update-card.dto";
+
+import type { CardsService } from "./cards.service";
+import type { CreateCardDto } from "./dto/create-card.dto";
+import type { UpdateCardDto } from "./dto/update-card.dto";
 import { Card } from "./models/card.model";
 
 @ApiTags("cards")
