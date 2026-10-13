@@ -1,6 +1,7 @@
 import { Box, Container, Flex, Heading, useColorMode } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+
 import { ColorModeSwitcher } from "../components/ColorModeSwitcher";
 import Columns from "../components/Columns";
 import { loginConfig } from "../config/login.config";

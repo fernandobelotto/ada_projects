@@ -19,16 +19,17 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
 import { Lists } from "../enums/lists.enum";
-import { CardModel } from "../models/card.model";
+import type { CardModel } from "../models/card.model";
 import { useAppDispatch, useAppSelector } from "../store";
 import { deleteCard, updateCard } from "../store/thunks/card.thunk";
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 
-type CardProps = {
+interface CardProps {
   data: CardModel;
-};
+}
 
 export default function Card({ data }: CardProps) {
   const {
@@ -54,25 +55,29 @@ export default function Card({ data }: CardProps) {
   }
 
   function handleNext() {
-    if (data.list === Lists.todo)
+    if (data.list === Lists.todo) {
       dispatch(
-        updateCard({ id: data.id, card: { ...data, list: Lists.doing } })
+        updateCard({ card: { ...data, list: Lists.doing }, id: data.id })
       );
-    if (data.list === Lists.doing)
+    }
+    if (data.list === Lists.doing) {
       dispatch(
-        updateCard({ id: data.id, card: { ...data, list: Lists.done } })
+        updateCard({ card: { ...data, list: Lists.done }, id: data.id })
       );
+    }
   }
 
   function handlePreview() {
-    if (data.list === Lists.doing)
+    if (data.list === Lists.doing) {
       dispatch(
-        updateCard({ id: data.id, card: { ...data, list: Lists.todo } })
+        updateCard({ card: { ...data, list: Lists.todo }, id: data.id })
       );
-    if (data.list === Lists.done)
+    }
+    if (data.list === Lists.done) {
       dispatch(
-        updateCard({ id: data.id, card: { ...data, list: Lists.doing } })
+        updateCard({ card: { ...data, list: Lists.doing }, id: data.id })
       );
+    }
   }
 
   function handleDelete() {
@@ -85,7 +90,7 @@ export default function Card({ data }: CardProps) {
   }
 
   const onSubmit = (values: CardModel) => {
-    dispatch(updateCard({ id: data.id, card: values })).finally(() => {
+    dispatch(updateCard({ card: values, id: data.id })).finally(() => {
       setEditMode(false);
     });
   };
@@ -103,7 +108,7 @@ export default function Card({ data }: CardProps) {
     return "visible";
   }
 
-  if (editMode)
+  if (editMode) {
     return (
       <>
         <Box
@@ -121,11 +126,11 @@ export default function Card({ data }: CardProps) {
                   placeholder="card title"
                   {...register("title", {
                     required: {
-                      value: true,
                       message: "the title is required",
+                      value: true,
                     },
                   })}
-                ></Input>
+                />
                 <FormErrorMessage>
                   {errors.title && errors.title.message}
                 </FormErrorMessage>
@@ -135,8 +140,8 @@ export default function Card({ data }: CardProps) {
                   placeholder="card content"
                   {...register("content", {
                     required: {
-                      value: true,
                       message: "the content is required",
+                      value: true,
                     },
                   })}
                 />
@@ -149,14 +154,14 @@ export default function Card({ data }: CardProps) {
                   onClick={handleCancel}
                   icon={<NotAllowedIcon />}
                   aria-label="cancel"
-                  size='sm'
+                  size="sm"
                 />
                 <IconButton
                   isLoading={loading === "pending"}
                   type="submit"
                   icon={<CheckIcon />}
                   aria-label="save"
-                  size='sm'
+                  size="sm"
                 />
               </Flex>
             </VStack>
@@ -164,6 +169,7 @@ export default function Card({ data }: CardProps) {
         </Box>
       </>
     );
+  }
 
   return (
     <>
@@ -194,11 +200,14 @@ export default function Card({ data }: CardProps) {
               onClick={handleEditMode}
               icon={<EditIcon />}
               aria-label="edit-mode"
-              size='sm'
+              size="sm"
             />
           </Flex>
-          <Box width='100%' maxH="320" overflowY={"scroll"}>
-            <ReactMarkdown children={data.content} remarkPlugins={[remarkGfm]} />
+          <Box width="100%" maxH="320" overflowY="scroll">
+            <ReactMarkdown
+              children={data.content}
+              remarkPlugins={[remarkGfm]}
+            />
           </Box>
           <Flex dir="row" justify="space-between" w="100%">
             <IconButton
@@ -207,14 +216,14 @@ export default function Card({ data }: CardProps) {
               icon={<ArrowBackIcon />}
               aria-label="preview"
               visibility={hideLeft()}
-              size='sm'
+              size="sm"
             />
             <IconButton
               isLoading={loading === "pending"}
               onClick={handleDelete}
               icon={<DeleteIcon />}
               aria-label="delete"
-              size='sm'
+              size="sm"
             />
             <IconButton
               isLoading={loading === "pending"}
@@ -222,7 +231,7 @@ export default function Card({ data }: CardProps) {
               icon={<ArrowForwardIcon />}
               aria-label="next"
               visibility={hideRight()}
-              size='sm'
+              size="sm"
             />
           </Flex>
         </VStack>

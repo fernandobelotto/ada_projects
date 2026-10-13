@@ -9,8 +9,9 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+
 import { Lists } from "../enums/lists.enum";
-import { CardModel } from "../models/card.model";
+import type { CardModel } from "../models/card.model";
 import { useAppDispatch, useAppSelector } from "../store";
 import { createCard, getCards } from "../store/thunks/card.thunk";
 
@@ -49,11 +50,11 @@ export default function NewCard() {
                 placeholder="card title"
                 {...register("title", {
                   required: {
-                    value: true,
                     message: "the title is required",
+                    value: true,
                   },
                 })}
-              ></Input>
+              />
               <FormErrorMessage>
                 {errors.title && errors.title.message}
               </FormErrorMessage>
@@ -63,8 +64,8 @@ export default function NewCard() {
                 placeholder="card content"
                 {...register("content", {
                   required: {
-                    value: true,
                     message: "the content is required",
+                    value: true,
                   },
                 })}
               />

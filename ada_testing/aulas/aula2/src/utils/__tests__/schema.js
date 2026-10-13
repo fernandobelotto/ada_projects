@@ -1,18 +1,19 @@
-test('testando a schema', () => {
+const { expect, test } = require("@jest/globals");
 
-    const birthday = {
-      day: 18,
-      month: 10,
-      year: 1988,
-      outra: 'true',
-    }
+test("testando a schema", () => {
+  const birthday = {
+    day: 18,
+    month: 10,
+    outra: "true",
+    year: 1988,
+  };
 
-    const schema = {
-      day: expect.any(Number),
-      month: expect.any(Number),
-      year: expect.any(Number),
-      outra: expect.any(String),
-    }
+  const schema = {
+    day: expect.any(Number),
+    month: expect.any(Number),
+    outra: expect.any(String),
+    year: expect.any(Number),
+  };
 
-    expect(birthday).toEqual(schema)
-  })
+  expect(birthday).toEqual(schema);
+});

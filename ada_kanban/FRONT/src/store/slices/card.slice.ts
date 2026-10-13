@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CardModel } from "../../models/card.model";
+
+import type { CardModel } from "../../models/card.model";
 import {
   createCard,
   updateCard,
@@ -7,10 +8,10 @@ import {
   getCards,
 } from "../thunks/card.thunk";
 
-type InitialStateType = {
+interface InitialStateType {
   entities: CardModel[];
   loading: "idle" | "pending" | "succeeded" | "failed";
-};
+}
 
 const InitialState: InitialStateType = {
   entities: [],
@@ -18,9 +19,6 @@ const InitialState: InitialStateType = {
 };
 
 const cardSlice = createSlice({
-  initialState: InitialState,
-  name: "cards",
-  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(createCard.fulfilled, (state, action) => {
@@ -65,6 +63,9 @@ const cardSlice = createSlice({
         state.loading = "failed";
       });
   },
+  initialState: InitialState,
+  name: "cards",
+  reducers: {},
 });
 
 // export const { } = cardSlice.actions;

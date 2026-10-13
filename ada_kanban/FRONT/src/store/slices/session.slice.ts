@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { login } from "../thunks/session.thunk";
 
 interface SessionState {
@@ -12,9 +13,6 @@ const initialState: SessionState = {
 };
 
 const sessionSlice = createSlice({
-  name: "session",
-  initialState,
-  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
@@ -28,6 +26,9 @@ const sessionSlice = createSlice({
         state.loading = "failed";
       });
   },
+  initialState,
+  name: "session",
+  reducers: {},
 });
 
 export const SessionReducer = sessionSlice.reducer;

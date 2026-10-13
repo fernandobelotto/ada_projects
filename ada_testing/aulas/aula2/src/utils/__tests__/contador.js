@@ -1,9 +1,11 @@
-import { nome, qualquer  } from '../contador.js'
+import { expect, test } from "@jest/globals";
+
+import { nome, qualquer } from "../contador.js";
 
 test("super simples", () => {
-    expect(nome).toBe('fernando')
-})
+  expect(nome).toBe("fernando");
+});
 
-test('testando a função qualquer', () => {
-    expect(qualquer()).toBe(2)
-})
+test("testando a função qualquer", () => {
+  expect(qualquer()).toBe(2);
+});

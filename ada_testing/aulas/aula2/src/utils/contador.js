@@ -1,8 +1,6 @@
-export const nome = "fernando"
+export const nome = "fernando";
 
 export function qualquer() {
-
-    const maisUma = 'bird'
-    return 2
-
+  const maisUma = "bird";
+  return 2;
 }

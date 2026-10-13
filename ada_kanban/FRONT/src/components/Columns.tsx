@@ -1,10 +1,11 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
+
 import { Lists } from "../enums/lists.enum";
 import Column from "./Column";
 import NewColumn from "./NewColumn";
-export default function Columns() {
 
+export default function Columns() {
   return (
     <>
       <Flex dir="row">

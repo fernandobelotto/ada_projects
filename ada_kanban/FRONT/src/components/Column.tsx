@@ -1,12 +1,13 @@
 import { Box, Divider, Heading, VStack } from "@chakra-ui/react";
-import { CardModel } from "../models/card.model";
+
+import type { CardModel } from "../models/card.model";
 import { useAppSelector } from "../store";
 import Card from "./Card";
 
-type Props = {
+interface Props {
   title: string;
   type: string;
-};
+}
 
 export default function Column({ title, type }: Props) {
   const { entities } = useAppSelector((state) => state.card);
@@ -19,9 +20,9 @@ export default function Column({ title, type }: Props) {
           <Divider />
           {entities
             .filter((card: CardModel) => card.list === type)
-            .map((card: CardModel) => {
-              return <Card data={card} />;
-            })}
+            .map((card: CardModel) => (
+              <Card data={card} />
+            ))}
         </VStack>
       </Box>
     </>

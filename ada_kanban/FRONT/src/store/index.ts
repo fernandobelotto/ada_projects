@@ -1,5 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import type { TypedUseSelectorHook } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import { CardReducer } from "./slices/card.slice";
 import { SessionReducer } from "./slices/session.slice";
 

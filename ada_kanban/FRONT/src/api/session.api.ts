@@ -1,5 +1,5 @@
 import getInstance from ".";
-import { Login } from "../models/login.model";
+import type { Login } from "../models/login.model";
 
 export class SessionApi {
   static async login(body: Login) {

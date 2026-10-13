@@ -15,7 +15,7 @@ routes.post("/", (req, res) => {
 routes.get("/:id", (req, res) => {
   const userId = req.params.id;
 
-  const user = users.find((user) => user.id === userId);
+  const user = users.find((item) => item.id === userId);
 
   res.send(user);
 });
@@ -27,9 +27,9 @@ routes.get("/", (req, res) => {
 routes.delete("/:id", (req, res) => {
   const userId = req.params.id;
 
-  const user = users.find((user) => user.id === userId);
+  const user = users.find((item) => item.id === userId);
 
-  const newUsers = users.filter((user) => user.id !== userId);
+  const newUsers = users.filter((item) => item.id !== userId);
 
   users = newUsers;
 
@@ -41,7 +41,7 @@ routes.put("/:id", (req, res) => {
 
   const userToUpdate = req.body;
 
-  const newUsers = users.filter((user) => user.id !== userId);
+  const newUsers = users.filter((item) => item.id !== userId);
 
   users = [...newUsers, userToUpdate];
 

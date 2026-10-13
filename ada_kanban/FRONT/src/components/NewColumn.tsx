@@ -1,9 +1,10 @@
 import { Box, Divider, Heading, VStack } from "@chakra-ui/react";
+
 import NewCard from "./NewCard";
 
-type Props = {
+interface Props {
   title: string;
-};
+}
 
 export default function NewColumn({ title }: Props) {
   return (

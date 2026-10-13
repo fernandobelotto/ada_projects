@@ -1,5 +1,6 @@
-import express from 'express'
-import { userRoute } from './routes/user.route.js'
+import express from "express";
+
+import { userRoute } from "./routes/user.route.js";
 
 class MyServer {
   constructor() {

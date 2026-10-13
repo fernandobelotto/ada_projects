@@ -1,13 +1,10 @@
-import {
-  ChakraProvider,
-  ColorModeScript,
-  extendTheme,
-} from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript, extendTheme } from "@chakra-ui/react";
 import * as React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import App from "./routes/App";
+
 import reportWebVitals from "./reportWebVitals";
+import App from "./routes/App";
 import * as serviceWorker from "./serviceWorker";
 import { store } from "./store";
 
@@ -27,7 +24,7 @@ ReactDOM.render(
       </ChakraProvider>
     </Provider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.querySelector("#root")
 );
 
 // TODO: implement offline first experience with data in local storage

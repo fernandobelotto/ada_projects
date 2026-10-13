@@ -1,4 +1,4 @@
-import { Login } from "../models/login.model";
+import type { Login } from "../models/login.model";
 
 export const loginConfig: Login = {
   login: process.env.REACT_APP_LOGIN || "",

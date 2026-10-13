@@ -1,11 +1,11 @@
 export const user = {
-    name: 'Renata',
-    age: 32,
-    isAlive: true,
-    address: {
-        street: 'rua dos avestruzes',
-        number: 197
-    },
-    profession: 'Professora',
-    secondProfession: 'SRE'
-}
+  address: {
+    number: 197,
+    street: "rua dos avestruzes",
+  },
+  age: 32,
+  isAlive: true,
+  name: "Renata",
+  profession: "Professora",
+  secondProfession: "SRE",
+};

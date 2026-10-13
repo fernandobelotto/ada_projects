@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -18,14 +19,14 @@ app.get("/posts/:id/comments", (req, res) => {
 app.post("/posts/:id/comments", async (req, res) => {
   const postId = req.params.id;
 
-  const content = req.body.content;
-  const commentId = (Math.random() * 10000).toFixed().toString();
+  const { content } = req.body;
+  const commentId = (Math.random() * 10_000).toFixed(0).toString();
 
   const commentsArray = comments[req.params.id] || [];
 
   const comment = {
-    id: commentId,
     content,
+    id: commentId,
     postId,
     status: "pending",
   };
@@ -36,8 +37,8 @@ app.post("/posts/:id/comments", async (req, res) => {
 
   await axios
     .post("http://localhost:4005/events", {
-      type: "CommentCreated",
       data: comment,
+      type: "CommentCreated",
     })
     .then(() => console.log("Evento CommentCreated enviado"))
     .catch(() => console.log("erro ao enviar evento CommentCreated"));
@@ -60,24 +61,27 @@ app.post("/events", async (req, res) => {
   if (eventType === "CommentModerated") {
     const commentUpdated = req.body.data;
 
-    const listaDeComentariosAtualizada = comments[commentUpdated.postId].map((comment) => {
-      if (comment.id === commentUpdated.id) {
-        return commentUpdated;
+    const listaDeComentariosAtualizada = comments[commentUpdated.postId].map(
+      (comment) => {
+        if (comment.id === commentUpdated.id) {
+          return commentUpdated;
+        }
+        return comment;
       }
-      return comment;
-    });
+    );
 
-    comments[commentUpdated.postId] = listaDeComentariosAtualizada
+    comments[commentUpdated.postId] = listaDeComentariosAtualizada;
 
-    console.log('comentário moderado foi atualizado!')
+    console.log("comentário moderado foi atualizado!");
     // enviar um evento de CommentUpdated
 
-    await axios.post("http://localhost:4005/events", {
-      type: "CommentUpdated",
-      data: commentUpdated,
-    })
-    .then(() => console.log('enviando evento CommentUpdated'))
-    .then(() => console.log('erro ao enviar evento CommentUpdated'))
+    await axios
+      .post("http://localhost:4005/events", {
+        data: commentUpdated,
+        type: "CommentUpdated",
+      })
+      .then(() => console.log("enviando evento CommentUpdated"))
+      .then(() => console.log("erro ao enviar evento CommentUpdated"));
   }
 
   res.json({});

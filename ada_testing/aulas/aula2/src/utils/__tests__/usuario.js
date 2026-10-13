@@ -1,19 +1,19 @@
-import { user } from '../usuario.js'
+import { expect, test } from "@jest/globals";
 
-test('testando a renata', () => {
+import { user } from "../usuario.js";
 
-    // expect(user.name).not.toBe("Renat")
-    // expect(user.name).toBe("Renata")
+test("testando a renata", () => {
+  // expect(user.name).not.toBe("Renat")
+  // expect(user.name).toBe("Renata")
 
-    expect(user).toEqual({
-        name: 'Renata',
-        age: 32,
-        isAlive: true,
-        address: {
-            street: 'rua dos avestruzes',
-            number: 197
-        },
-        secondProfession: 'SRE'
-    })
-
-})
+  expect(user).toEqual({
+    address: {
+      number: 197,
+      street: "rua dos avestruzes",
+    },
+    age: 32,
+    isAlive: true,
+    name: "Renata",
+    secondProfession: "SRE",
+  });
+});

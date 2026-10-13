@@ -1,8 +1,9 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { CreateCardDto } from "./dto/create-card.dto";
-import { UpdateCardDto } from "./dto/update-card.dto";
+import type { Repository } from "typeorm";
+
+import type { CreateCardDto } from "./dto/create-card.dto";
+import type { UpdateCardDto } from "./dto/update-card.dto";
 import { Card } from "./models/card.model";
 
 @Injectable()
